@@ -1,0 +1,42 @@
+## Switch layer 3 :
+vlan 10 - 192.168.10.254
+vlan 20 - 192.168.20.254
+vlan 30 - 192.168.30.254
+fa0/20 - rede WIFI
+
+### Divisão de portas: 
+
+## Switchs 
+fa0/1-12 comercial vlan 10
+fa0/13/19 operacional vlan 20(por fazer)
+fa0/21-22 - linhas trunk 
+fa0/22-24 - redundancia de rede
+
+## Layer 3:
+fa0/1-8 rede piso 1
+fa0/9-16 rede piso 2
+fa0/17-24 rede piso 3
+
+## Etherchannel:
+#todos os Switch
+canal 1 - fa021-22 allowed vlan 10,20,30
+#todos os layers 3
+canal 1 - fa0/1-2 allowed vlan 10,20,30
+canal 2 - fa0/9-10 allowed vlan 10,20,30
+canal 3 - fa0/17-18 allowed vlan 10,20,30
+canal 4 - fa0/23-24 allowed vlan 10,20,30 - redundancia da L(3)
+
+##DHCP
+vlan comercial 
+network 192.168.10.0 255.255.255.0
+default-gateway 192.168.10.254
+
+vlan operacional 
+network 192.168.20.0 255.255.255.0
+default-gateway 192.168.20.254
+
+vlan WIFI
+network 192.168.30.0 255.255.255.0
+default-gateway 192.168.30.254
+
+- em todas não há nenhum endereço ainda reservado
